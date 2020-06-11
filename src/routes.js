@@ -9,6 +9,7 @@ import FileController from './app/controller/FileController';
 import ProviderController from './app/controller/ProviderController';
 import AppointmentController from './app/controller/AppointmentController';
 import ScheduleController from './app/controller/ScheduleController';
+import NotificationController from './app/controller/NotificationController';
 
 const routes = new Router();
 const upload = Multer(multerConfig);
@@ -21,11 +22,14 @@ routes.put('/users', UserController.update);
 
 routes.post('/files', upload.single('file'), FileController.store);
 
+routes.get('/providers', ProviderController.index);
+
 routes.post('/appointments', AppointmentController.store);
 routes.get('/appointments', AppointmentController.index);
 
 routes.get('/schedules', ScheduleController.index);
 
-routes.get('/providers', ProviderController.index);
+routes.get('/notifications', NotificationController.index);
+routes.put('/notifications/:id', NotificationController.update);
 
 export default routes;
